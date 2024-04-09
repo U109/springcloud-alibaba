@@ -1,0 +1,19 @@
+#spring:
+#  application:
+#    name: moonce-provider
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 117.72.32.234:8848
+#      config:
+#        enabled: false
+#
+#server:
+#  port: 8081
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#

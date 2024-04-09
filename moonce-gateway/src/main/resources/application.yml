@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: moonce-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 117.72.32.234:8848
+    sentinel:
+      transport:
+        port: 8721
+        dashboard: 117.72.32.234:8080
+    gateway:
+
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        - id: MOONCE-CONSUMER
+          uri: lb://moonce-consumer
+          predicates:
+            - Method=GET,POST
+
+        - id: MOONCE-CONSUMER-FEIGN
+          uri: lb://moonce-consumer-feign
+          predicates:
+            - Method=GET,POST
+
+server:
+  port: 9000
+
+feign:
+  sentinel:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
